@@ -1,0 +1,41 @@
+{% include 'movies/header.html' %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <div class="alert alert-danger" role="alert">
+        {% for message in messages %}
+            {{ message }}
+        {% endfor %}
+{% endif %}
+
+{% endwith %}
+
+<div class="card">
+    <div class="card-header">
+        Add new movie 🎬
+    </div>
+    <div class="card-body">
+        <p class="card-text">
+            <form method="post" action="/store" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="txtName">Name:</label>
+                    <input id="txtName" class="form-control" type="text" name="txtName">
+                </div>
+                <div class="form-group">
+                    <label for="txtDescription">Description</label>
+                    <input id="txtDescription" class="form-control" type="text" name="txtDescription">
+                </div>
+                <div class="form-group">
+                    <label for="txtPoster">Poster</label>
+                    <input id="txtPoster" class="form-control" type="file" name="txtPoster">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-success" value="Add Movie">
+                    <a href="{{url_for('index')}}" class="btn btn-primary">Back</a>
+                </div>
+            </form>
+        </p>
+    </div>
+</div>
+
+{% include 'movies/footer.html' %}
